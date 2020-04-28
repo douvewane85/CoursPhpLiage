@@ -44,7 +44,7 @@ class Rectangle extends Figure{
 //
 Rectangle::setUnite("m");
 
-$rect1=new Rectangle();
+/*$rect1=new Rectangle();
 echo "-------Rectangle 1\n";
 echo $rect1->getUnite()."\n";
 $rect1->setLongueur(10);
@@ -58,5 +58,6 @@ $rect2->setLongueur(20);
 echo "Longueur: ".$rect2->getLongueur()."\n";
 $rect2->setLargeur(10);
 echo "Largeur: ".$rect2->getLargeur()."\n";
+*/
 
 ?>
