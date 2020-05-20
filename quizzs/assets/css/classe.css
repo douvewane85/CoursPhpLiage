@@ -1,0 +1,74 @@
+.bgPrimary {
+  background: #51bfd0;
+  color: white;
+}
+.bgSecondary {
+  background: #042425;
+  color: white;
+}
+.bgWhite {
+  background: #f8fdfd;
+}
+
+div#main {
+  background: url("../img/Background.png") no-repeat center center/cover;
+  height: 90vh;
+}
+
+header {
+  height: 10vh;
+}
+.btn-primary {
+  background: #51bfd0;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: #51bfd0;
+  opacity: 0.8;
+}
+
+.avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: solid 2px #51bfd0;
+}
+
+.deconnexion {
+  background: #3addd6;
+}
+.deconnexion:hover {
+  background: #3addd6;
+  opacity: 0.8;
+}
+.menu,
+.section-body #inscription-form {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 7px;
+}
+.menu nav a {
+  color: #494f54;
+}
+
+.menu nav a:hover {
+  background-color: rgba(129, 129, 129, 0.1);
+}
+
+.menu nav a.active {
+  background-color: rgba(129, 129, 129, 0.1);
+  border-left: 4px solid #27ae60;
+}
+.menu .menu-header {
+  background: rgb(81, 191, 208);
+  background: rgb(81, 191, 208);
+  background: linear-gradient(
+    0deg,
+    rgba(81, 191, 208, 0.9360119047619048) 45%,
+    rgba(248, 253, 253, 1) 100%
+  );
+}
+
+.menu .avatar {
+  border-color: rgba(129, 129, 129, 0.5);
+}

@@ -26,8 +26,7 @@ class Router{
           
           //transforme url en tableau
            $url=explode("/", $_GET['url']);
-          
-          var_dump($url);
+           //Convertir Premeire lettre du Controller en Majuscule
           $controller=ucfirst($url[0]);
           $pathControlers = "./controllers/".$controller.".php";
           //Controller Existe

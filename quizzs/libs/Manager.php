@@ -41,10 +41,9 @@ abstract class Manager{
             //tuple => objet   
             $datas[] =new $this->tableName($rowBd) ;
             /* 
-               CarreManager
-               $datas[] =new Carre($rowBd)
-               RectangleManager
-               $datas[] =new Rectangle($rowBd)
+               CompteManager
+               $datas[] =new Compte($rowBd)
+               
             */
            }
 
@@ -55,8 +54,14 @@ abstract class Manager{
 
       public abstract function add($objet);
       public abstract function update($objet);
-      public abstract function delete($id);
-      public abstract function findAll();
+      public  function delete($id){
+        $sql="delete from $this->tableName where id=$id";
+        return  $this->executeUpdate( $sql)!=0;
+     }
+     public function findAll(){
+        $sql="select * from  $this->tableName";
+        return $this->executeSelect($sql);
+     }
       public abstract function findById($id);
 
 }
