@@ -7,8 +7,7 @@ class CompteManager extends Manager{
      }
 
      public function add($objet){
-         $sql="";
-         
+         $sql="INSERT INTO `compte` (`id`, `login`, `password`, `profil`, `fullName`) VALUES (NULL, '".$objet->login."', '".$objet->password."', '".$objet->profil."', '".$objet->fullName."');";
         return  $this->executeUpdate( $sql)!=0;
 
      }
@@ -27,7 +26,7 @@ class CompteManager extends Manager{
         return count($datas)==1? $datas[0]:null;   
       }
 
-      
+
      public function getUserByLoginPwd($login,$pwd){
          $sql="select * from $this->tableName where login='$login' and password='$pwd'";
          $datas=$this->executeSelect($sql);

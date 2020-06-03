@@ -27,7 +27,7 @@
             <div class="section-header bgPrimary position-relative ">
                 <h3 class=" w-100 py-2 d-inline-block text-center">CREER ET PARAMETRER VOS QUIZZ</h3>
                 <a name="" id=""  class="deconnexion position-absolute btn btn-primary"
-                    style="right: 10px; top: 10px;" href="security/seDeconnecter" role="button">Deconnexion</a>
+                    style="right: 10px; top: 10px;" href="<?=URL_ROOT?>/security/seDeconnecter" role="button">Deconnexion</a>
             </div>
 
 

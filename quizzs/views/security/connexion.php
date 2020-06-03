@@ -15,7 +15,7 @@
                     <?php
                         }
                     ?>
-                <form class="py-2" method="post" action="security/seConnecter">
+                <form class="py-2" method="post" action="<?=URL_ROOT?>/security/seConnecter">
                     <div class="form-group ">
                         <input type="text" placeholder="Login" name="login" class="form-control" id="email">
                      <?php
@@ -41,7 +41,7 @@
 
 
                     <button type="submit" class="btn btn-primary" name="btn_connexion">Connexion</button>
-                    <a href="security/inscription" class="text-secondary pl-5">S'inscrire pour jouer</a>
+                    <a href="<?=URL_ROOT?>/security/inscription" class="text-secondary pl-5">S'inscrire pour jouer</a>
                 </form>
             </div>
 

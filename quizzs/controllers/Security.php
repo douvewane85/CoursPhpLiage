@@ -34,20 +34,25 @@ class Security extends Controller{
 
  
     public function creerCompte(){
-        $this->is_connect();
-         
-        if(isset($_POST['btn_inscription'])){
-               extract($_POST);
 
-           //Joueur ou Admin
+
+         //Joueur ou Admin
+
+           //Creation d'un compte par un Joueur
            $profil="joueur";
            $layout="default";
-          
+
+           //Creation d'un compte par un admin
            if(isset($_SESSION['userConnect'])){
                
                $profil="admin";
                $layout="admin";
             } 
+         
+        if(isset($_POST['btn_inscription'])){
+               extract($_POST);
+
+          
     
           //Valide les Données Obligatoires
           $this->validator->isVide($login,'login',"Login Obligatoire");
@@ -62,12 +67,17 @@ class Security extends Controller{
                    //Login existe
                    $user=$this->manager->loginExist($login);
                    if($user==null){
+                       //Scenario Nominal
                        $compteUser=new Compte();
                        $compteUser->login=$login;
                        $compteUser->password=$password1;
                        $compteUser->fullName=$prenom." ".$nom;
                        $compteUser->profil=$profil;
-                      
+                        $result=$this->manager->add( $compteUser);
+                        if($result){
+                            $this->data_view['err_login']= "Compte Créé avec Succes";
+                            $this->inscription($layout);
+                        }
                        
                    }else{
                        $this->data_view['err_login']= "Login Existe Déja";
@@ -89,6 +99,8 @@ class Security extends Controller{
                 $this->inscription($layout);
                
             }
+        }else{
+            $this->inscription($layout);
         }
     
     }
@@ -98,6 +110,7 @@ class Security extends Controller{
         //Recuperation des Donnée =>$_POST
         
         if(isset($_POST['btn_connexion'])){
+             //Au clique du bouton de connexion
            
               //Validation des données saisies
               //Extraire les données d'un tableau associatif =>extract($tab_associatif)
@@ -133,12 +146,20 @@ class Security extends Controller{
                 $this->render();
                
             }
+        }else{
+            //Actualisation de Page
+            $this->inscription("admin");
         }
        
       
     }
     public function seDeconnecter(){
-            echo 1;
+        //Destruction des données utlisateur
+           session_destroy();
+           unset( $_SESSION['userConnect']);
+         //Redirection vers la page de Connexion
+             $this->view="connexion";
+             $this->render();
     }
 
    

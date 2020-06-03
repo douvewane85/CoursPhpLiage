@@ -14,7 +14,7 @@
                       <?php
                         }
                      ?>
-                    <form class="pr-5" method="post" action="creerCompte">
+                    <form class="pr-5" method="post" action="<?=URL_ROOT?>/security/creerCompte">
                         <div class="form-group mb-1">
                             <label class="m-0 p-1" for="prenom">Prenom</label>
                             <input name="prenom" type="text" class="form-control" id="prenom">
