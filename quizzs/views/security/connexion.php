@@ -41,7 +41,7 @@
 
 
                     <button type="submit" class="btn btn-primary" name="btn_connexion">Connexion</button>
-                    <a href="security/creerCompte" class="text-secondary pl-5">S'inscrire pour jouer</a>
+                    <a href="security/inscription" class="text-secondary pl-5">S'inscrire pour jouer</a>
                 </form>
             </div>
 

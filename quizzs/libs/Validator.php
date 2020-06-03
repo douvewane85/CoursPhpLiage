@@ -53,6 +53,12 @@ class Validator{
     public function isTelephone($telephone,$key,$sms="La Longeur doit etre superieur à la Largeur"){
         
     }
+
+    public function isEgal($val1,$val2,$key,$sms="Les Valeurs ne sont pas identiques"){
+        if($val1!=$val2){
+            $this->errors[$key]=$sms;
+        }
+    }
 }
 
 ?>

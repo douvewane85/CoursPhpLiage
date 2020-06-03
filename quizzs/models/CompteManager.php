@@ -20,6 +20,14 @@ class CompteManager extends Manager{
 
      }
 
+
+      public function loginExist($login){
+        $sql="select * from $this->tableName where login='$login'";
+        $datas=$this->executeSelect($sql);
+        return count($datas)==1? $datas[0]:null;   
+      }
+
+      
      public function getUserByLoginPwd($login,$pwd){
          $sql="select * from $this->tableName where login='$login' and password='$pwd'";
          $datas=$this->executeSelect($sql);

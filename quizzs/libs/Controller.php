@@ -5,6 +5,7 @@ class Controller{
     protected $view;
     protected $folder_view;
     protected $layout;
+   
     //Variable qui permet stocker les données à afficher dans les vues
     protected $data_view=[];
     //Ecriture et l'execution des requetes
@@ -19,4 +20,7 @@ class Controller{
         $content_for_layout=ob_get_clean();
         require_once('views/layout/'.$this->layout.'.php');
        }
+
+
+      
 }

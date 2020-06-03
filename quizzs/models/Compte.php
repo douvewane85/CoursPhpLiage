@@ -2,11 +2,11 @@
 
  class Compte {
   //Attributs
-       private $id;
-       private $login;
-       private $password;
-       private $profil;
-       private $fullName;
+       public $id;
+       public $login;
+       public $password;
+       public $profil;
+       public  $fullName;
 
    //Methodes Concretes d'instances
         //Constructeur

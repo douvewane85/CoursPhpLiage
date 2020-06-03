@@ -3,11 +3,14 @@
 class Security extends Controller{
 
     function __construct(){
+ 
         $this->folder_view="security";
         $this->layout="default";
         //Objet de Validation
         $this->validator=new Validator();
         $this->manager=new CompteManager();
+         session_start();
+        
 
     }
 
@@ -20,18 +23,82 @@ class Security extends Controller{
         $this->view="connexion";
         $this->render();
     }
+
+    public function inscription($layout="default"){
+        //Afficher la Page de Connection
+          $this->layout=$layout;
+          $this->view="inscription";
+          $this->render();
+    }
+
+
  
     public function creerCompte(){
-        $this->view="inscription";
-        $this->render();
+        $this->is_connect();
+         
+        if(isset($_POST['btn_inscription'])){
+               extract($_POST);
+
+           //Joueur ou Admin
+           $profil="joueur";
+           $layout="default";
+          
+           if(isset($_SESSION['userConnect'])){
+               
+               $profil="admin";
+               $layout="admin";
+            } 
+    
+          //Valide les Données Obligatoires
+          $this->validator->isVide($login,'login',"Login Obligatoire");
+          $this->validator->isVide($password1,'password1',"Mot de Passe  Obligatoire");
+          $this->validator->isVide($password2,'password2',"Mot de Passe  Obligatoire");
+          $this->validator->isVide($nom,'nom',"Nom  Obligatoire");
+          $this->validator->isVide($prenom,'prenom',"Prenom  Obligatoire");
+          if($this->validator->isValid()){
+                 //Validation Password
+                 $this->validator->isEgal($password1,$password2,"password2","Les deux Mots de Passe ne sont pas identiques");
+                 if($this->validator->isValid()){
+                   //Login existe
+                   $user=$this->manager->loginExist($login);
+                   if($user==null){
+                       $compteUser=new Compte();
+                       $compteUser->login=$login;
+                       $compteUser->password=$password1;
+                       $compteUser->fullName=$prenom." ".$nom;
+                       $compteUser->profil=$profil;
+                      
+                       
+                   }else{
+                       $this->data_view['err_login']= "Login Existe Déja";
+                       $this->inscription($layout);
+                   }
+                  
+                 }else{
+                    $errors=$this->validator->getErrors();
+                    $this->data_view['errors']= $errors;
+                    $this->inscription($layout);
+                 }
+                
+
+                
+              
+          }else{
+                $errors=$this->validator->getErrors();
+                $this->data_view['errors']= $errors;
+                $this->inscription($layout);
+               
+            }
+        }
     
     }
 
 
     public function seConnecter(){
         //Recuperation des Donnée =>$_POST
-      
+        
         if(isset($_POST['btn_connexion'])){
+           
               //Validation des données saisies
               //Extraire les données d'un tableau associatif =>extract($tab_associatif)
               //$_POST['login']   remplacer $login
@@ -44,10 +111,14 @@ class Security extends Controller{
                $compte= $this->manager->getUserByLoginPwd($login,$password);
                if($compte!=null){
                    //Compte Existe
+                    
+                        $_SESSION['userConnect']=$compte;
+                     
                   if($compte->getProfil()==="joueur"){
-                      echo "Affichage Page de Jeu";
+                          echo "Affichage Page de Jeu";
                   }else{
-                      echo "Affichage Page de l'Admin";
+                        
+                         $this->inscription("admin");
                   }
                }else{
                      //Login ou Mot de passe Incorrect
@@ -57,7 +128,7 @@ class Security extends Controller{
                }
             }else{
                 $errors=$this->validator->getErrors();
-              $this->data_view['errors']= $errors;
+                $this->data_view['errors']= $errors;
                 $this->view="connexion";
                 $this->render();
                
@@ -67,7 +138,9 @@ class Security extends Controller{
       
     }
     public function seDeconnecter(){
-        echo "seDeconnecter"; 
+            echo 1;
     }
+
+   
 
 }
